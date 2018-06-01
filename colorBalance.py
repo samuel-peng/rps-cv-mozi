@@ -55,7 +55,7 @@ def simplest_cb(img, percent):
 
     return cv2.merge(out_channels)
 
-def main(image):
+def colorBalance(image):
     out = simplest_cb(image, 1)
     return out
 
