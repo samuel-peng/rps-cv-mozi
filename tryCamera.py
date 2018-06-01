@@ -20,7 +20,7 @@ class Camera():
         except  TypeError or ValueError:
             raise
 
-    def rotatedImage():
+    def rotatedImage(nothing):
         img = cv2.imread('messi5.jpg',0)
         rows,cols = img.shape
 
