@@ -31,7 +31,7 @@ class Camera():
         self.cam.set(4, size * 64) #height
 
     def close(self):
-        self.stop()
+        #self.stop()
         self.cam.release()
 
     def rotatedImage(self, image, angle):
