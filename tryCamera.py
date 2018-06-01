@@ -46,7 +46,7 @@ class Camera():
             rval = false
         while rval:
             #cv2.imshow("Preview", self.rotatedImage(frame, 90))
-            cv2.imshow("Preview", imutils.rotate_bound(frame,90))
+            cv2.imshow("Preview", imutils.rotate_bound(colorBalance.main(frame),90))
             rrval, frame = self.cam.read()
             key = cv2.waitKey(20)
             if key == 27:
