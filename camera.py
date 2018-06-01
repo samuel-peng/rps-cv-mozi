@@ -47,7 +47,9 @@ class Camera():
        return imp.fastRotate(colorBalance(image))
 
     def getOpenCVImage(self):
-        return self.processImg(self.cam.read())
+        if self.cam.isOpened():
+            rval, frame = self.cam.read()
+        return self.processImg(frame)
 
     def startPreview(self):
         if self.cam.isOpened():
