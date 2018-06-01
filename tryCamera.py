@@ -25,7 +25,7 @@ class Camera():
         #rows, cols = image.shape
         rot_mat = cv2.getRotationMatrix2D(image_center, angle, 1.0)
         result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR)
-        result = cv2.warpAffine(image, rot_mat,(cols, rows))
+        #result = cv2.warpAffine(image, rot_mat,(cols, rows))
         return result
 
     def startPreview(self):
