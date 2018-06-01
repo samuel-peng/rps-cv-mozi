@@ -41,6 +41,9 @@ class Camera():
         #result = cv2.warpAffine(image, rot_mat,(cols, rows))
         return result
 
+    def processImg(self, image):
+        return imutils.rotate_bound(colorBalance(image), 270)
+
     def startPreview(self):
         if self.cam.isOpened():
             rval, frame = self.cam.read()
@@ -48,8 +51,9 @@ class Camera():
             rval = false
         while rval:
             #cv2.imshow("Preview", self.rotatedImage(frame, 90))
-            cv2.imshow("Preview", imutils.rotate_bound(colorBalance(frame),90))
+            cv2.imshow("Preview", self.processedImg)
             rrval, frame = self.cam.read()
+            self.processedImg = processImg(frame)
             key = cv2.waitKey(20)
             if key == 27:
                 break
