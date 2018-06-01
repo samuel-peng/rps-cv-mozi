@@ -6,6 +6,8 @@ class Camera():
 
     def __init__(self, size=10, frameRate=40, hflip=False, vflip=False):
         self.active = False
+        cv2.namedWindow("Preview")
+        self.vc = cv2.VideoCapture(0)
         try:
             if type(size) is not int:
                 raise TypeError("Size must be an integer")
@@ -17,9 +19,6 @@ class Camera():
                 raise ValueError("Size must be in range 1 to 51")
         except  TypeError or ValueError:
             raise
-        cv2.namedWindow("Preview")
-        self.vc = cv2.VideoCapture(0)
-
 
     def rotateImage(image, angle):
         image_center = tuple(np.array(image.shape[1::-1]) / 2)
