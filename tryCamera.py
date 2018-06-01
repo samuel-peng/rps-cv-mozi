@@ -13,7 +13,7 @@ class Camera():
                 raise TypeError("Size must be an integer")
             elif 1 <= size and size <= 51:
                 self.size = size
-                self. hRes = size * 64
+                self.hRes = size * 64
                 self.vRes = size * 48
             else:
                 raise ValueError("Size must be in range 1 to 51")
@@ -28,12 +28,12 @@ class Camera():
 
     def startPreview(self):
         if self.vc.isOpened():
-            self.rval, self.frame = self.vc.read()
+            rval, frame = self.vc.read()
         else:
-            self.rval = false
-        while self.rval:
-            cv2.imshow("Preview", self.rotateImage(self.frame, 90))
-            self.rval, self.frame = self.vc.read()
+            rval = false
+        while rval:
+            cv2.imshow("Preview", self.rotateImage(frame, 90))
+            rval, frame = self.vc.read()
             key = cv2.waitKey(20)
             if key == 27:
                 break
