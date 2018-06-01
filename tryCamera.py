@@ -51,7 +51,7 @@ class Camera():
             rval = false
         while rval:
             #cv2.imshow("Preview", self.rotatedImage(frame, 90))
-            self.processedImg = processImg(frame)
+            self.processedImg = self.processImg(frame)
             cv2.imshow("Preview", self.processedImg)
             rrval, frame = self.cam.read()
             key = cv2.waitKey(20)
