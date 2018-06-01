@@ -40,7 +40,7 @@ class Camera():
 
     def startPreview(self):
         if self.cam.isOpened():
-            rval, frame = self.vc.read()
+            rval, frame = self.cam.read()
         else:
             rval = false
         while rval:
