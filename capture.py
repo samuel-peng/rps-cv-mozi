@@ -55,7 +55,7 @@ try:
     # Main loop
     while not stop:
         # Capture image from camera
-        img = cam.processedImg()
+        img = cam.getOpenCVImage()
 
         # Crop image
         img = imp.crop(img)
