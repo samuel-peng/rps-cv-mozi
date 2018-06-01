@@ -23,8 +23,8 @@ class Camera():
         except  TypeError or ValueError:
             raise
         self.cam = cv2.VideoCapture(0)
-        self.cam.set(3, size * 48)
-        self.cam.set(4, size * 64)
+        self.cam.set(3, size * 48) #width
+        self.cam.set(4, size * 64) #height
 
     def close(self):
         self.stop()
@@ -44,8 +44,9 @@ class Camera():
         else:
             rval = false
         while rval:
-            cv2.imshow("Preview", self.rotatedImage(frame, 90))
-            rval, frame = self.cam.read()
+            #cv2.imshow("Preview", self.rotatedImage(frame, 90))
+            cv2.imshow("Preview", frame)
+            rrval, frame = self.cam.read()
             key = cv2.waitKey(20)
             if key == 27:
                 break
