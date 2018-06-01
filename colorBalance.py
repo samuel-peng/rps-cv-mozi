@@ -44,8 +44,10 @@ def simplest_cb(img, percent):
         low_val  = flat[math.floor(n_cols * half_percent)]
         high_val = flat[math.ceil( n_cols * (1.0 - half_percent))]
 
+        """
         print("Lowval: ", low_val)
         print("Highval: ", high_val)
+        """
 
         # saturate below the low percentile and above the high percentile
         thresholded = apply_threshold(channel, low_val, high_val)
