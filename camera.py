@@ -14,7 +14,6 @@ class Camera():
 
     def __init__(self, size=10, frameRate=40, hflip=False, vflip=False):
         self.active = False
-        cv2.namedWindow("Preview")
         try:
             if type(size) is not int:
                 raise TypeError("Size must be an integer")
@@ -44,7 +43,8 @@ class Camera():
 
     def processImg(self, image):
        #return imutils.rotate_bound(colorBalance(image), 270)
-       return imp.fastRotate(colorBalance(image))
+       #return imp.fastRotate(colorBalance(image)) #with rotation
+        return colorBalance(image)
 
     def getOpenCVImage(self):
         if self.cam.isOpened():
@@ -52,6 +52,7 @@ class Camera():
         return self.processImg(frame)
 
     def startPreview(self):
+        cv2.namedWindow("Preview")
         if self.cam.isOpened():
             rval, frame = self.cam.read()
         else:
