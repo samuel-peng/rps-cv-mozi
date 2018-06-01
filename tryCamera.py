@@ -28,7 +28,7 @@ class Camera():
 
     def startPreview(self):
         if self.vc.isOpened():
-            self.rval, self.frame = vc.read()
+            self.rval, self.frame = self.vc.read()
         else:
             self.rval = false
         while rval:
