@@ -23,8 +23,8 @@ class Camera():
         except  TypeError or ValueError:
             raise
         self.cam = cv2.VideoCapture(0)
-        self.cam.set(3, vRes)
-        self.cam.set(4, hRes)
+        self.cam.set(3, size * 48)
+        self.cam.set(4, size * 64)
 
     def close(self):
         self.stop()
