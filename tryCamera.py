@@ -20,13 +20,19 @@ class Camera():
         except  TypeError or ValueError:
             raise
 
-    def rotateImage(imagee):
+    def rotatedImage():
+        img = cv2.imread('messi5.jpg',0)
+        rows,cols = img.shape
+
+        M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
+        dst = cv2.warpAffine(img,M,(cols,rows))
+        return dst
         #image_center = tuple(np.array(image.shape[1::-1]) / 2)
-        rows, cols = image.shape
-        rot_mat = cv2.getRotationMatrix2D(image_center, 90, 1.0)
+        #rows, cols = image.shape
+        #rot_mat = cv2.getRotationMatrix2D(image_center, 90, 1.0)
         #result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR)
-        result = cv2.warpAffine(image, rot_mat,(cols, rows))
-        return result
+        #result = cv2.warpAffine(image, rot_mat,(cols, rows))
+        #return result
 
     def startPreview(self):
         if self.vc.isOpened():
@@ -34,7 +40,7 @@ class Camera():
         else:
             rval = false
         while rval:
-            cv2.imshow("Preview", self.rotateImage(frame))
+            cv2.imshow("Preview", self.rotatedImage())
             rval, frame = self.vc.read()
             key = cv2.waitKey(20)
             if key == 27:
