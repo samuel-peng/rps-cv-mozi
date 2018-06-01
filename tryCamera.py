@@ -31,7 +31,7 @@ class Camera():
             self.rval, self.frame = self.vc.read()
         else:
             self.rval = false
-        while rval:
+        while self.rval:
             cv2.imshow("Preview", self.rotateImage(self.frame, 90))
             self.rval, self.frame = self.vc.read()
             key = cv2.waitKey(20)
