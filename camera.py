@@ -2,6 +2,7 @@ import time
 
 import cv2
 import numpy as np
+import rpsimgproc as imp
 
 import timer
 import filters
@@ -42,7 +43,9 @@ class Camera():
         return result
 
     def processImg(self, image):
-        return imutils.rotate_bound(colorBalance(image), 270)
+       #return imutils.rotate_bound(colorBalance(image), 270)
+       return imp.fastRotate(colorBalance(image))
+
 
     def startPreview(self):
         if self.cam.isOpened():

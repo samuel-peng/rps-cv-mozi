@@ -1,28 +1,5 @@
 # rpsutil.py
 # Source: https://github.com/DrGFreeman/rps-cv
-#
-# MIT License
-#
-# Copyright (c) 2017 Julien de la Bruere-Terreault <drgfreeman@tuta.io>
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 # This file defines variables and functions to ensure consistancy in capture and
 # naming of images.
 
@@ -52,12 +29,13 @@ def cameraSetup():
     # Settings
     size = 8
     frameRate = 40
-    awbFilename = 'awb_gains.txt'
+    #awbFilename = 'awb_gains.txt'
 
     # Create Camera object
     print("Initializing camera")
-    cam = camera.Camera(size=size, frameRate=frameRate)
+    cam = camera.Camera()
 
+    """
     # Check if white balance file exists
     if len(glob.glob(awbFilename)) != 0:
         # File exists, set camera white balance using gains from file
@@ -71,5 +49,5 @@ def cameraSetup():
             print("Place a sheet of white paper in front of camera.")
             input("Press any key when ready.\n")
             cam.doWhiteBalance(awbFilename)
-
+    """
     return cam
