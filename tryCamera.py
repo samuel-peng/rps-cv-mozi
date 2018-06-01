@@ -21,7 +21,7 @@ class Camera():
             raise
 
     def rotatedImage(nothing):
-        img = cv2.imread('messi5.jpg',0)
+        img = self.vc.read()
         rows,cols = img.shape
 
         M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
