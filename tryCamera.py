@@ -1,13 +1,17 @@
+import time
+
 import cv2
 import numpy as np
+import gscam
 
+import timer
+import filters
 
 class Camera():
 
     def __init__(self, size=10, frameRate=40, hflip=False, vflip=False):
         self.active = False
         cv2.namedWindow("Preview")
-        self.vc = cv2.VideoCapture(0)
         try:
             if type(size) is not int:
                 raise TypeError("Size must be an integer")
@@ -19,6 +23,13 @@ class Camera():
                 raise ValueError("Size must be in range 1 to 51")
         except  TypeError or ValueError:
             raise
+        self.cam = cv2.VideoCapture(0)
+        self.cam.set(3, vRes)
+        self.cam.set(4, hRes)
+
+    def close(self):
+        self.stop()
+        self.cam.release()
 
     def rotatedImage(self, image, angle):
         image_center = tuple(np.array(image.shape[1::-1]) / 2)
@@ -29,13 +40,13 @@ class Camera():
         return result
 
     def startPreview(self):
-        if self.vc.isOpened():
+        if self.cam.isOpened():
             rval, frame = self.vc.read()
         else:
             rval = false
         while rval:
             cv2.imshow("Preview", self.rotatedImage(frame, 90))
-            rval, frame = self.vc.read()
+            rval, frame = self.cam.read()
             key = cv2.waitKey(20)
             if key == 27:
                 break
