@@ -62,8 +62,8 @@ try:
 
         # Add framerate to copy of image
         imgFR = imp.fastRotate(img)
-        txtPos = (5, imgFR.shape[0] - 10)
-        cam.addFrameRateText(imgFR, txtPos, bgr=(0,0,255))
+        #txtPos = (5, imgFR.shape[0] - 10)
+        #cam.addFrameRateText(imgFR, txtPos, bgr=(0,0,255))
 
         # Display image
         cv2.imshow('Camera', imgFR)
