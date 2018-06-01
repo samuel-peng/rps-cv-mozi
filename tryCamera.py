@@ -28,13 +28,13 @@ class Camera():
         return result
 
     def startPreview(self):
-        if vc.isOpened():
+        if self.vc.isOpened():
             self.rval, self.frame = vc.read()
         else:
             self.rval = false
         while rval:
             cv2.imshow("Preview", self.rotateImage(self.frame, 90))
-            self.rval, self.frame = vc.read()
+            self.rval, self.frame = self.vc.read()
             key = cv2.waitKey(20)
             if key == 27:
                 break
