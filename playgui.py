@@ -111,7 +111,7 @@ if __name__ == '__main__':
             notify = False
 
             # Check if player hand is present
-            if nonZero > 9000:
+            if nonZero > 15000:
 
                 # Predict gesture
                 predGesture = clf.predict([gray])[0]
