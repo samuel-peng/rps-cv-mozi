@@ -102,6 +102,7 @@ if __name__ == '__main__':
 
             # Count non-background pixels
             nonZero = np.count_nonzero(gray)
+            print(nonZero)
 
             # Define waiting time
             waitTime = 0
@@ -111,7 +112,7 @@ if __name__ == '__main__':
             notify = False
 
             # Check if player hand is present
-            if nonZero > 15000:
+            if nonZero > 45000:
 
                 # Predict gesture
                 predGesture = clf.predict([gray])[0]

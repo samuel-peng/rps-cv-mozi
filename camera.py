@@ -49,7 +49,8 @@ class Camera():
     def getOpenCVImage(self):
         if self.cam.isOpened():
             rval, frame = self.cam.read()
-        return self.processImg(frame)
+        #return self.processImg(frame)
+        return frame
 
     def startPreview(self):
         cv2.namedWindow("Preview")
