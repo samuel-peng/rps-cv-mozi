@@ -25,7 +25,7 @@ class Camera():
                 raise ValueError("Size must be in range 1 to 51")
         except  TypeError or ValueError:
             raise
-        self.cam = cv2.VideoCapture(0)
+        self.cam = cv2.VideoCapture(1)
         self.cam.set(3, size * 48) #width
         self.cam.set(4, size * 64) #height
 

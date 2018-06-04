@@ -14,12 +14,13 @@ import rpsimgproc as imp
 
 def saveImage(img, gesture):
 
+    print("Saving " + rps.gestureTxt[gesture] + "Initiated")
     # Define image path and filename
     folder = rps.imgPathsRaw[gesture]
     name = rps.gestureTxt[gesture] + '-' + time.strftime('%Y%m%d-%H%M%S')
     extension = '.png'
 
-    print("Saving " + name + extension + " - Accept ([y]/n)?")
+    print("Saving " + folder + name + extension + " - Accept ([y]/n)?")
 
     # Write gesture name to image and show for a few seconds
     imgTxt = img.copy()
@@ -74,7 +75,7 @@ try:
             # Escape or "Q" key pressed; Stop.
             stop = True
         else:
-            gesture = None
+            gesture = -1
             if key == 114:
                 # "R" key pressed (Rock)
                 gesture = rps.ROCK
@@ -84,7 +85,7 @@ try:
             elif key in [115, 99]:
                 # "S" or "C" key pressed (Scisors)
                 gesture = rps.SCISSORS
-            if gesture:
+            if gesture != -1:
                 saveImage(img, gesture)
 
 finally:
