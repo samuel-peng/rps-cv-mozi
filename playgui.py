@@ -86,6 +86,7 @@ if __name__ == '__main__':
         greenImg = cv2.imread('img/gui/green.png', cv2.IMREAD_COLOR)
         greenImg = cv2.cvtColor(greenImg, cv2.COLOR_BGR2RGB)
 
+        calibrate = 0
         while True:
 
             # Get image from camera
@@ -102,7 +103,7 @@ if __name__ == '__main__':
 
             # Count non-background pixels
             nonZero = np.count_nonzero(gray)
-            print(nonZero)
+            #print(nonZero)
 
             # Define waiting time
             waitTime = 0
@@ -111,44 +112,47 @@ if __name__ == '__main__':
             gesture = None
             notify = False
 
+            #time.sleep(2)
             # Check if player hand is present
-            if nonZero > 45000:
+            if nonZero > 32000:
+                if calibrate > 10:
+                    # Predict gesture
+                    predGesture = clf.predict([gray])[0]
 
-                # Predict gesture
-                predGesture = clf.predict([gray])[0]
-
-                if predGesture == lastGesture:
-                    successive += 1
-                else:
-                    successive = 0
-
-                if successive == 2:
-                    print('Player: {}'.format(rps.gestureTxt[predGesture]))
-                    waitTime = 3000
-                    gesture = predGesture
-
-                    # Computer gesture
-                    computerGesture = random.randint(0,2)
-                    print('Computer: {}'.format(rps.gestureTxt[computerGesture]))
-
-                    # Set computer image to computer gesture
-                    gui.setCoImg(coImgs[computerGesture])
-
-                    diff = computerGesture - predGesture
-                    if diff in [-2, 1]:
-                        print('Computer wins!')
-                        gui.setWinner('computer')
-                    elif diff in [-1, 2]:
-                        print('Player wins!')
-                        gui.setWinner('player')
+                    if predGesture == lastGesture:
+                        successive += 1
                     else:
-                        print('Tie')
-                        gui.setWinner('tie')
-                    print('Score: player {}, computer {}\n'.format(gui.plScore,
+                        successive = 0
+
+                    if successive == 2:
+                        print('Player: {}'.format(rps.gestureTxt[predGesture]))
+                        waitTime = 3000
+                        gesture = predGesture
+
+                        # Computer gesture
+                        computerGesture = random.randint(0,2)
+                        print('Computer: {}'.format(rps.gestureTxt[computerGesture]))
+
+                        # Set computer image to computer gesture
+                        gui.setCoImg(coImgs[computerGesture])
+
+                        diff = computerGesture - predGesture
+                        if diff in [-2, 1]:
+                            print('Computer wins!')
+                            gui.setWinner('computer')
+                        elif diff in [-1, 2]:
+                            print('Player wins!')
+                            gui.setWinner('player')
+                        else:
+                            print('Tie')
+                            gui.setWinner('tie')
+                        print('Score: player {}, computer {}\n'.format(gui.plScore,
                                                                  gui.coScore))
 
-                lastGesture = predGesture
+                    lastGesture = predGesture
 
+                else:
+                    calibrate = calibrate + 1
             else:
 
                 lastGesture = -1
